@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [bejegyzesek, setBejegyzesek] = useState([]);
   const [feladat, setFeladat] = useState("");
+  const isValid = feladat!== "";
   const bejegyzesHozzaadasa = () => {
     const bejegyzes = {
       feladat: feladat
@@ -21,6 +22,10 @@ function App() {
     )
   });
 
+  const figyelmeztetes = () => {
+    alert("Nem töltötte ki a mezőt!");
+  };
+
   return (
     <div>
       <h1>Teendők</h1>
@@ -30,7 +35,7 @@ function App() {
           <p>Feladat:</p>
           <input type="text" placeholder='Feladat' value={feladat} onInput={(e) => {setFeladat(e.target.value);}}/>
         </div>
-        <button onClick={() => bejegyzesHozzaadasa()}>Hozzáad</button>
+        <button onClick={() => isValid ? (bejegyzesHozzaadasa()) : (figyelmeztetes())}>Hozzáad</button>
       </section>
 
       <section>
