@@ -17,7 +17,7 @@ function App() {
   const lista = [];
   bejegyzesek.forEach(bejegyzes => {
     lista.push(
-      <li>{bejegyzes.feladat}</li>
+      <li><input type="checkbox"/>{bejegyzes.feladat}</li>
     )
   });
 
