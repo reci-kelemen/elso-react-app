@@ -14,7 +14,7 @@ function App() {
     bejegyzesek.forEach(bejegyzes => ujBejegyzesek.push(bejegyzes))
     ujBejegyzesek.push(bejegyzes);
     setBejegyzesek(ujBejegyzesek);
-    const isAlreadyInList = lista.includes(bejegyzes);
+    const isAlreadyInList = bejegyzesek.includes(bejegyzes);
     setFeladat("");
   };
 
