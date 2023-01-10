@@ -4,6 +4,8 @@ import './App.css';
 function App() {
   const [bejegyzesek, setBejegyzesek] = useState([]);
   const [feladat, setFeladat] = useState("");
+  const isValid = feladat!== "";
+  
   const bejegyzesHozzaadasa = () => {
     const bejegyzes = {
       feladat: feladat
@@ -12,14 +14,24 @@ function App() {
     bejegyzesek.forEach(bejegyzes => ujBejegyzesek.push(bejegyzes))
     ujBejegyzesek.push(bejegyzes);
     setBejegyzesek(ujBejegyzesek);
+    const isAlreadyInList = bejegyzesek.includes(bejegyzes);
+    setFeladat("");
   };
 
   const lista = [];
   bejegyzesek.forEach(bejegyzes => {
     lista.push(
-      <li>{bejegyzes.feladat}</li>
+      <li><input type="checkbox"/>{bejegyzes.feladat}</li>
     )
   });
+
+  const figyelmeztetesUres = () => {
+    alert("Nem töltötte ki a mezőt!");
+  };
+
+  const figyelmeztetesMarLetezo = () => {
+    alert("A feladat már rajta van a listán!");
+  };
 
   return (
     <div>
@@ -30,7 +42,7 @@ function App() {
           <p>Feladat:</p>
           <input type="text" placeholder='Feladat' value={feladat} onInput={(e) => {setFeladat(e.target.value);}}/>
         </div>
-        <button onClick={() => bejegyzesHozzaadasa()}>Hozzáad</button>
+        <button onClick={() => isValid ? (bejegyzesHozzaadasa()) : (figyelmeztetesUres())}>Hozzáad</button>
       </section>
 
       <section>
