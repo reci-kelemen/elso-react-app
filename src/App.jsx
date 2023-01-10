@@ -5,6 +5,7 @@ function App() {
   const [bejegyzesek, setBejegyzesek] = useState([]);
   const [feladat, setFeladat] = useState("");
   const isValid = feladat!== "";
+  
   const bejegyzesHozzaadasa = () => {
     const bejegyzes = {
       feladat: feladat
@@ -13,6 +14,8 @@ function App() {
     bejegyzesek.forEach(bejegyzes => ujBejegyzesek.push(bejegyzes))
     ujBejegyzesek.push(bejegyzes);
     setBejegyzesek(ujBejegyzesek);
+    const isAlreadyInList = lista.includes(bejegyzes);
+    setFeladat("");
   };
 
   const lista = [];
@@ -22,8 +25,12 @@ function App() {
     )
   });
 
-  const figyelmeztetes = () => {
+  const figyelmeztetesUres = () => {
     alert("Nem töltötte ki a mezőt!");
+  };
+
+  const figyelmeztetesMarLetezo = () => {
+    alert("A feladat már rajta van a listán!");
   };
 
   return (
@@ -35,7 +42,7 @@ function App() {
           <p>Feladat:</p>
           <input type="text" placeholder='Feladat' value={feladat} onInput={(e) => {setFeladat(e.target.value);}}/>
         </div>
-        <button onClick={() => isValid ? (bejegyzesHozzaadasa()) : (figyelmeztetes())}>Hozzáad</button>
+        <button onClick={() => isValid ? (bejegyzesHozzaadasa()) : (figyelmeztetesUres())}>Hozzáad</button>
       </section>
 
       <section>
